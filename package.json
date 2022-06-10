@@ -1,0 +1,57 @@
+{
+  "name": "@flying-studio/use-pagination",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "分页请求库",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "release": "npx tsc && npm publish",
+    "coverage": "vitest run --coverage",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "format": "prettier --write ."
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "react",
+    "usePagination",
+    "vue"
+  ],
+  "author": {
+    "name": "FlyingStudio",
+    "email": "a1149625757@126.com"
+  },
+  "repository": "https://github.com/cumtflyingstudio/usePagination.git",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cumtflyingstudio/usePagination/issues"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.0",
+    "@types/react-test-renderer": "latest",
+    "@types/react": "latest",
+    "@vitejs/plugin-react": "latest",
+    "@vitest/ui": "latest",
+    "happy-dom": "latest",
+    "jsdom": "^19.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-test-renderer": "^18.1.0",
+    "vitest": "latest",
+    "vue": "^3.2.33"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "vue": "^3.0.0"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "outDir": "./dist",
+    "declaration": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "removeComments": true,
+    // 删除所有注释，除了以 /!* 开头的版权信息。
+    "downlevelIteration": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": false
+  },
+  "include": [
+    "src/vue/usePagination.ts",
+    "src/react/usePagination.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "**.test.ts",
+    "**.test.tsx",
+    "**.spec.ts",
+    "**.spec.tsx"
+  ]
+}
