@@ -1,0 +1,53 @@
+// Vitest Snapshot v1
+
+exports[`usePagination > init should be with refresh once 1`] = `
+[
+  {
+    "id": 1000,
+    "item": {
+      "id": 1000,
+      "name": "Page:1",
+    },
+  },
+  {
+    "id": 1001,
+    "item": {
+      "id": 1001,
+      "name": "Page:1",
+    },
+  },
+]
+`;
+
+exports[`usePagination > test run once 1`] = `
+[
+  {
+    "id": 1000,
+    "item": {
+      "id": 1000,
+      "name": "Page:1",
+    },
+  },
+  {
+    "id": 1001,
+    "item": {
+      "id": 1001,
+      "name": "Page:1",
+    },
+  },
+  {
+    "id": 1000,
+    "item": {
+      "id": 1000,
+      "name": "Page:2",
+    },
+  },
+  {
+    "id": 1001,
+    "item": {
+      "id": 1001,
+      "name": "Page:2",
+    },
+  },
+]
+`;
