@@ -1,4 +1,5 @@
 import { useState, useReducer, useRef, useEffect } from "react";
+import { beforeAll } from "vitest";
 interface IDataItem<T> {
   id: number | string;
   item: T;
@@ -50,17 +51,20 @@ const usePagination = <T>(
   option = {
     idPropertyName: "id",
     initialPage: 1,
+    beforeAllRequest: (currPage:number) => {}
   }
 ) => {
   const [list, dispatch] = useReducer(reducer<T>, [] as IDataList<T>);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { idPropertyName, initialPage } = option;
+  const { idPropertyName, initialPage,beforeAllRequest } = option;
   const page = useRef(initialPage);
   const fetchData = async (type:string) => {
     setLoading(true);
     try {
-      const dataList = await paginationRequest(page.current++);
+      const {currPage} = beforeAllRequest(page.current)??{currPage:page.current};
+      const dataList = await paginationRequest(page.current);
+      page.current++;
       const payload = dataList.map(item =>
         formatItem(item, idPropertyName)
       );
