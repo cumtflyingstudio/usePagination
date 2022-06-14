@@ -1,19 +1,21 @@
 {
   "name": "@flying-studio/use-pagination",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "分页请求库",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "release": "npx tsc && npm publish",
+    "release": "npm run format && npm run test:once && npx tsc && npm publish",
     "coverage": "vitest run --coverage",
     "test": "vitest",
+    "test:once": "vitest run",
     "test:ui": "vitest --ui",
     "format": "prettier --write ."
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "keywords": [

@@ -1,5 +1,4 @@
 import { useState, useReducer, useRef, useEffect } from "react";
-import { beforeAll } from "vitest";
 interface IDataItem<T> {
   id: number | string;
   item: T;
@@ -26,8 +25,7 @@ function reducer<T>(state: IDataList<T>, action: IAction<T>): IDataList<T> {
   }
   // remove duplication
   let idSet = new Set();
-  return res
-    .filter(i => {
+  return res.filter((i) => {
     if (idSet.has(i.id)) {
       return false;
     } else {
@@ -51,23 +49,19 @@ const usePagination = <T>(
   option = {
     idPropertyName: "id",
     initialPage: 1,
-    beforeAllRequest: (currPage:number) => {}
+    beforeAllRequest: (currPage: number) => {},
   }
 ) => {
-  const [list, dispatch] = useReducer(reducer<T>, [] as IDataList<T>);
+  const [list, dispatch] = useReducer(reducer, [] as IDataList<T>);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { idPropertyName, initialPage,beforeAllRequest } = option;
+  const { idPropertyName, initialPage, beforeAllRequest } = option;
   const page = useRef(initialPage);
-  const fetchData = async (type:string) => {
+  const fetchData = async (type: string) => {
     setLoading(true);
     try {
-      const {currPage} = beforeAllRequest(page.current)??{currPage:page.current};
-      const dataList = await paginationRequest(page.current);
-      page.current++;
-      const payload = dataList.map(item =>
-        formatItem(item, idPropertyName)
-      );
+      const dataList = await paginationRequest(page.current++);
+      const payload = dataList.map((item) => formatItem(item, idPropertyName));
       dispatch({ type, payload });
       return payload;
     } catch (error) {
@@ -84,11 +78,11 @@ const usePagination = <T>(
     page.current = currPage;
     fetchData("ADD");
   };
-  useEffect(() => { 
-    refresh()
-  },[])
+  useEffect(() => {
+    refresh();
+  }, []);
   return {
-    data:list.map(i=>i["item"]),
+    data: list.map((i) => i["item"]),
     loading,
     error,
     run,

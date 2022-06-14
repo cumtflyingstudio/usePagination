@@ -6,11 +6,7 @@
     "useDefineForClassFields": true,
     "moduleResolution": "Node",
     "module": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -26,10 +22,7 @@
     "noImplicitAny": false,
     "noUnusedLocals": false
   },
-  "include": [
-    "src/vue/usePagination.ts",
-    "src/react/usePagination.ts"
-  ],
+  "include": ["src/vue/usePagination.ts", "src/utils/usePagination.ts"],
   "exclude": [
     "dist",
     "node_modules",

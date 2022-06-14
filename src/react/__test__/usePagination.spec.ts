@@ -4,7 +4,7 @@ import { usePagination } from "../usePagination";
 const mockPaginationRequest = (
   currPage: number,
   // odd -> 1000X, even -> 2000X
-  id: number = (Number(!(currPage % 2)) + 1) * 10000 + currPage
+  id: number = (currPage % 2 === 0 ? 2 : 1) * 10000 + currPage
 ) => {
   function createItem(currPage) {
     return {

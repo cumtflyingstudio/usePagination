@@ -17,20 +17,20 @@ function wrapperSchedular<F, R>(
 
   return function (...args: any[]) {
     return new Promise((resolve, reject) => {
-      const task = res => {
+      const task = (res) => {
         resolve(res);
         taskQueue.delete(task);
       };
       taskQueue.add(task);
       latestTask = task;
-      requestFn(...args).then(res => {
+      requestFn(...args).then((res) => {
         if (type === "fastest") {
           if (taskQueue.size === 0) return res;
-          taskQueue.forEach(task => task(res));
+          taskQueue.forEach((task) => task(res));
         } else if (type === "latest") {
           if (taskQueue.size === 0) return res;
           if (latestTask === task) {
-            taskQueue.forEach(task => task(res));
+            taskQueue.forEach((task) => task(res));
           }
         }
       });
