@@ -43,6 +43,15 @@ function formatItem<T>(item: T, idPropertyName = "id") {
 /**
  *
  * @param paginationRequest 请求函数，返回需要请求到的数组
+ * @example 
+ * const  {
+    data,
+    loading,
+    error,
+    run,
+    refresh,
+    fetchData,
+  } = usePagination((currPage) => request(currPage))
  */
 const usePagination = <T>(
   paginationRequest: (currPage: number) => Promise<T[]>,
