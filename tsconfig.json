@@ -22,7 +22,7 @@
     "noImplicitAny": false,
     "noUnusedLocals": false
   },
-  "include": ["src/vue/usePagination.ts", "src/utils/usePagination.ts"],
+  "include": ["src/vue/usePagination.ts", "src/react/usePagination.ts"],
   "exclude": [
     "dist",
     "node_modules",

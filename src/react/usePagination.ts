@@ -34,9 +34,10 @@ function reducer<T>(state: IDataList<T>, action: IAction<T>): IDataList<T> {
     }
   });
 }
-function formatItem<T>(item: T, idPropertyName = "id") {
+function formatItem<T>(item: T, idPropertyName) {
+  const id = item?.[idPropertyName] ?? Math.random();
   return {
-    id: item[idPropertyName] as string | number,
+    id,
     item: item,
   };
 }
@@ -64,7 +65,11 @@ const usePagination = <T>(
   const [list, dispatch] = useReducer(reducer, [] as IDataList<T>);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { idPropertyName, initialPage, beforeAllRequest } = option;
+  const {
+    idPropertyName = "id",
+    initialPage = 1,
+    beforeAllRequest = () => {},
+  } = option;
   const page = useRef(initialPage);
   const fetchData = async (type: string) => {
     setLoading(true);
@@ -91,7 +96,7 @@ const usePagination = <T>(
     refresh();
   }, []);
   return {
-    data: list.map((i) => i["item"]),
+    data: list.map((i) => i["item"]) as T[],
     loading,
     error,
     run,

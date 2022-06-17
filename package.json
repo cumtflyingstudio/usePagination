@@ -1,7 +1,7 @@
 {
   "name": "@flying-studio/use-pagination",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "分页请求库",
   "main": "dist/react/usePagination.js",
   "types": "dist/react/usePagination.d.ts",
@@ -34,16 +34,16 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^8.0.0",
-    "@types/react-test-renderer": "latest",
-    "@types/react": "latest",
-    "@vitejs/plugin-react": "latest",
-    "@vitest/ui": "latest",
+    "@types/react": "^18.0.12",
+    "@types/react-test-renderer": "^18.2.0",
+    "@vitejs/plugin-react": "^1.3.2",
+    "@vitest/ui": "^0.15.1",
     "happy-dom": "latest",
     "jsdom": "^19.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-test-renderer": "^18.1.0",
-    "vitest": "latest",
+    "react-test-renderer": "^18.2.0",
+    "vitest": "^0.15.1",
     "vue": "^3.2.33"
   },
   "peerDependencies": {

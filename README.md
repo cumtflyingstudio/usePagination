@@ -3,7 +3,7 @@
 ```javascript
 import usePagination from "@flying-studio/use-pagination";
 const { data, loading, error, run, refresh, fetchData } = usePagination(
-  currPage => request(currPage)
+  (currPage) => request(currPage)
 );
 ```
 
