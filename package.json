@@ -1,7 +1,7 @@
 {
   "name": "@flying-studio/use-pagination",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "分页请求库",
   "author": {
     "name": "FlyingStudio",

@@ -77,7 +77,9 @@ const usePagination = <T>(
   } = option ?? {};
   const page = useRef(initialPage);
 
-  const memorizedRequest = useEvent(wrapperSchedular(paginationRequest));
+  const memorizedRequest = useEvent(
+    wrapperSchedular(paginationRequest, { type: 'list' }),
+  );
   const fetchData = async (type: string) => {
     setLoading(true);
     try {
