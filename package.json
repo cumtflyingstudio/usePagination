@@ -1,59 +1,76 @@
 {
   "name": "@flying-studio/use-pagination",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "分页请求库",
-  "main": "dist/react/usePagination.js",
-  "types": "dist/react/usePagination.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "release": "npm run format && npm run test:once && npx tsc && npm publish",
-    "coverage": "vitest run --coverage",
-    "test": "vitest",
-    "test:once": "vitest run",
-    "test:ui": "vitest --ui",
-    "format": "prettier --write ."
+  "author": {
+    "name": "FlyingStudio",
+    "email": "1730214056@qq.com"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+  "license": "MIT",
+  "repository": "https://github.com/cumtflyingstudio/usePagination.git",
+  "bugs": {
+    "url": "https://github.com/cumtflyingstudio/usePagination/issues"
   },
   "keywords": [
     "react",
     "usePagination",
     "vue"
   ],
-  "author": {
-    "name": "FlyingStudio",
-    "email": "1730214056@qq.com"
-  },
-  "repository": "https://github.com/cumtflyingstudio/usePagination.git",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cumtflyingstudio/usePagination/issues"
-  },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^8.0.0",
-    "@types/react": "^18.0.12",
-    "@types/react-test-renderer": "^18.2.0",
-    "@vitejs/plugin-react": "^1.3.2",
-    "@vitest/ui": "^0.15.1",
-    "happy-dom": "latest",
-    "jsdom": "^19.0.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-test-renderer": "^18.2.0",
-    "vitest": "^0.15.1",
-    "vue": "^3.2.33"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0",
-    "vue": "^3.0.0"
-  },
+  "main": "dist/react/usePagination.js",
+  "types": "dist/react/usePagination.d.ts",
   "files": [
     "dist",
     "package.json",
     "README.md",
     "LICENSE"
-  ]
+  ],
+  "scripts": {
+    "build": "tsc",
+    "release": "nr prerelease && npx tsc && npm publish",
+    "prerelease": "nr lint:fix && nr test:once",
+    "coverage": "vitest run --coverage",
+    "test": "vitest",
+    "test:once": "vitest run",
+    "test:ui": "vitest --ui",
+    "lint": "eslint .",
+    "lint:fix": "eslint src/**/*.* --fix"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.1",
+    "@antfu/ni": "^0.16.3",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-test-renderer": "^18.0.0",
+    "@umijs/fabric": "^2.12.2",
+    "@vitejs/plugin-react": "^1.3.2",
+    "@vitest/ui": "^0.15.1",
+    "eslint": "^8.18.0",
+    "happy-dom": "^6.0.2",
+    "jsdom": "^19.0.0",
+    "lint-staged": "13.0.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-test-renderer": "^18.2.0",
+    "simple-git-hooks": "^2.8.0",
+    "typescript": "^4.7.4",
+    "vitest": "^0.15.2",
+    "vue": "^3.2.33"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --fix"
+    ]
+  }
 }
