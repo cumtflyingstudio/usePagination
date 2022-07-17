@@ -6,100 +6,38 @@ describe('wrapperSchedular', () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
+  const request = (i: number) => {
+    return new Promise<number>(resolve => {
+      setTimeout(() => {
+        resolve(i);
+      }, 1000);
+    });
+  };
   it('should be defined', () => {
     expect(wrapperSchedular).toBeDefined();
   });
   it('feature:return fastest work, test two tasks', async () => {
     let i = 0;
-    const request = () => {
-      return new Promise<number>(resolve => {
-        setTimeout(() => {
-          resolve(i++);
-        }, 1000);
-      });
-    };
+    let j = 0;
     const myRequest = wrapperSchedular(request, { type: 'fastest' });
-    myRequest().then(res => {
-      expect(res).toBe(0);
-    });
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(0);
-      });
-    }, 500);
+    const promise = Promise.all([myRequest(i++), myRequest(i++)])
+    const withoutSchedular_promise = Promise.all([request(j++), request(j++)])
     vi.runAllTimers();
+    await expect(promise).resolves.toEqual([0, 0]);
+    await expect(withoutSchedular_promise).resolves.toEqual([0, 1]);
   });
-  it('feature:return fastest work ,test three tasks', async () => {
+  it('feature:return latest work ,test three tasks', async () => {
     let i = 0;
-    const request = () => {
-      return new Promise<number>(resolve => {
-        setTimeout(() => {
-          resolve(i++);
-        }, 1000);
-      });
-    };
-    const myRequest = wrapperSchedular(request, { type: 'fastest' });
-    myRequest().then(res => {
-      expect(res).toBe(0);
-    });
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(0);
-      });
-    }, 250);
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(0);
-      });
-    }, 500);
-    vi.runAllTimers();
-  });
-  it('feature: latest, test two tasks', async () => {
-    let i = 0;
-    const request = () => {
-      return new Promise<number>(resolve => {
-        setTimeout(() => {
-          resolve(i++);
-        }, 1000);
-      });
-    };
+    let j = 0;
     const myRequest = wrapperSchedular(request, { type: 'latest' });
-    myRequest().then(res => {
-      expect(res).toBe(1);
-    });
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(1);
-      });
-    }, 500);
+    const promise = Promise.all([myRequest(i++), myRequest(i++), myRequest(i++)])
+    const withoutSchedular_promise = Promise.all([request(j++), request(j++), request(j++)])
     vi.runAllTimers();
+    await expect(promise).resolves.toEqual([2, 2, 2]);
+    await expect(withoutSchedular_promise).resolves.toEqual([0, 1, 2]);
   });
-  it('feature: latest ,test three tasks', async () => {
-    let i = 0;
-    const request = () => {
-      return new Promise<number>(resolve => {
-        setTimeout(() => {
-          resolve(i++);
-        }, 1000);
-      });
-    };
-    const myRequest = wrapperSchedular(request, { type: 'latest' });
-    myRequest().then(res => {
-      expect(res).toBe(2);
-    });
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(2);
-      });
-    }, 250);
-    setTimeout(() => {
-      myRequest().then(res => {
-        expect(res).toBe(2);
-      });
-    }, 500);
-    vi.runAllTimers();
-  });
-  it('feature: type list, list should be rightly returned', async () => {
+
+  it('feature: list option, list should be rightly returned', async () => {
     function mockAsyncTask(num: number) {
       return new Promise<number>(resolve => {
         setTimeout(() => {
@@ -116,6 +54,15 @@ describe('wrapperSchedular', () => {
       ),
     );
     vi.runAllTimers();
-    await expect(tasks).resolves.toEqual([1, 2, 3, 4, 5, 6]);
+    await expect(tasks).resolves.toMatchInlineSnapshot(`
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+      ]
+    `);
   });
 });
