@@ -41,8 +41,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "vue": "^3.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.1",
