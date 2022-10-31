@@ -1,4 +1,6 @@
-# usePagination
+# @flying-studio/use-pagination 
+
+[![npm version](https://badge.fury.io/js/@flying-studio%2Fuse-pagination.svg)](https://www.npmjs.com/package/@flying-studio/use-pagination)
 
 ```javascript
 import usePagination from "@flying-studio/use-pagination";
